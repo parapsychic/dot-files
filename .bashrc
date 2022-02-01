@@ -18,7 +18,12 @@ alias neofetch='neofetch | lolcat'
 alias vi='vim'
 alias vim='nvim'
 alias py='python3'
+alias cd..='cd ..'
+alias cdb='cd .. && cd'
+alias cda='cd && cd'
+alias yt='ytfzf -t'
 
+export PATH="$PATH:/home/parapsychic/.bin"
 export PATH="$PATH:/home/parapsychic/Development/flutter/bin"
 export PATH="$PATH:/home/parapsychic/.local/share/gem/ruby/3.0.0/bin"
 export CHROME_EXECUTABLE=/bin/chromium 
