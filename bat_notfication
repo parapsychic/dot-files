@@ -6,6 +6,14 @@ do
     BATSTAT=$(cat /sys/class/power_supply/BAT0/status)
     if [ "$BATSTAT" = 'Discharging' ]
     then
+        #if under 6%, just shutdown
+        if [ $BATCHARGE -lt 6 ]
+        then
+            # not the cleanest way to poweroff, but this works ig
+            poweroff
+        fi
+        
+        #show notifications
         if [ $BATCHARGE -lt 10 ]
         then
             notify-send -u critical "BATTERY TOO LOW!" "Battery below 10"
@@ -19,7 +27,6 @@ do
         then
             notify-send -u low "50% alert" "Battery at 50%"
         fi
-        
     fi
     sleep 60s
 done

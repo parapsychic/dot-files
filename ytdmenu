@@ -1,0 +1,4 @@
+#!/bin/bash
+#This is a dummy script for ytfzf -D for dmenu
+# I can't figure out how to change dmenu's aliases
+ytfzf -D
