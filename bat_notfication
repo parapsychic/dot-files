@@ -1,0 +1,23 @@
+#!/bin/bash
+
+while true
+do
+    BATCHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
+    BATSTAT=$(cat /sys/class/power_supply/BAT0/status)
+    if [ "$BATSTAT" = 'Discharging' ]
+    then
+        if [ $BATCHARGE -lt 10 ]
+        then
+            notify-send -u critical "BATTERY TOO LOW!" "Battery below 10"
+        elif [ $BATCHARGE -lt 20 ]
+            notify-send -u critical "BATTERY LOW!" "Battery below 20"
+        elif [ $BATCHARGE -lt 30 ]
+            notify-send -u normal "Below 30%" "This might be a very good time to start charging"
+        elif [ $BATCHARGE -lt 50 ]
+            notify-send -u low "50% alert" "Battery at 50%"
+        fi
+        
+    fi
+    sleep 60s
+done
+
