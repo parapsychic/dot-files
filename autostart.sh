@@ -2,11 +2,10 @@
 lxsession &
 #picom &
 dunst &
-#dwmblocks &
 bat_notification &
+#dwmblocks &
 nitrogen --restore &
 ### Uncomment only ONE of the following ###
-
 # uncomment this line to restore last saved wallpaper...
 #xargs xwallpaper --stretch < ~/.xwallpaper &
 # ...or uncomment this line to set a random wallpaper on login
@@ -24,10 +23,14 @@ bat(){
     echo -e "$batstat $batcharge"
 }
 
+rootLeft(){
+    rem=$(df -h | grep -w / | awk '{print $5}')
+    echo $rem
+}
 
 while true
 do
-    xsetroot -name " $(bat) | $(dt) | parapsychic "
+    xsetroot -name " $(bat) | $(dt) | / $(rootLeft) | parapsychic "
     sleep 10s #update time every minute
 done &
 
