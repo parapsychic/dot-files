@@ -1,0 +1,80 @@
+# Basic Settings
+set previewer ~/.config/lf/previewer.sh
+set cleaner ~/.config/lf/clear_img.sh
+set hidden true
+set ignorecase true
+set icons true
+set drawbox true
+
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+#cmd setwallpaper %cp "$f" ~/.config/wall.jpg && xwallpaper --zoom "$f"
+
+cmd editfile ${{
+    /bin/nvim $f
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+## Execute exe
+#cmd execute ${{
+#	wine "$f"
+#}}
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+map e
+
+#map c $vscodium "$f"
+
+map au unarchive
+map ae execute
+
+# Basic Functions
+map . set hidden!
+map DD delete
+map p paste
+map x cut
+map y copy
+map <enter> open
+map R reload
+map mf mkfile
+map md mkdir
+map bg setwallpaper
+map C clear
+map e editfile
+
+# Movement
+#map gd cd ~/documents
+#map gD cd ~/downloads
+#map gp cd ~/pictures
+#map gc cd ~/.config
+#map gr cd ~/repos
+#map gv cd ~/videos/recordings
+#map gs cd ~/.local/bin
