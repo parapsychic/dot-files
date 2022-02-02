@@ -10,10 +10,13 @@ do
         then
             notify-send -u critical "BATTERY TOO LOW!" "Battery below 10"
         elif [ $BATCHARGE -lt 20 ]
+        then
             notify-send -u critical "BATTERY LOW!" "Battery below 20"
         elif [ $BATCHARGE -lt 30 ]
+        then
             notify-send -u normal "Below 30%" "This might be a very good time to start charging"
         elif [ $BATCHARGE -lt 50 ]
+        then
             notify-send -u low "50% alert" "Battery at 50%"
         fi
         

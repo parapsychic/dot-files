@@ -1,8 +1,9 @@
 #! /bin/bash
-lxsession &
+#lxsession &
 #picom &
-dunst &
-bat_notification &
+#dunst &
+#why here? Because it's easier to edit it here
+/home/parapsychic/.bin/bat_notfication &
 #dwmblocks &
 nitrogen --restore &
 ### Uncomment only ONE of the following ###
@@ -20,7 +21,7 @@ dt(){
 bat(){
     batstat=$(cat /sys/class/power_supply/BAT0/capacity) 
     batcharge=$(cat /sys/class/power_supply/BAT0/status) 
-    echo -e "$batstat $batcharge"
+    echo -e "$batstat% $batcharge"
 }
 
 rootLeft(){
