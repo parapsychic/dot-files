@@ -32,7 +32,8 @@ export CHROME_EXECUTABLE=/bin/chromium
 export EDITOR=/bin/nvim
 
 #PS1='\[\e[1;36m\]\u\[\e[0m\]@\[\e[1;32m\]\h \[\e[1;34m\]\w \[\e[0m\]\$ '
-PS1=' \[\e[1;34m\]\w \[\e[30m\]\$ \[\e[0m\]'
+#PS1=' \[\e[1;34m\]\w \[\e[30m\]\$ \[\e[0m\]'
+PS1=' \[\e[1;34m\]\w \[\e[0m\]'
 # Alternative red prompt for root
 #PS1='\[\e[1;31m\]\u\@\h \[\e[1;34m\]\w \[\e[0m\]\$ '
 
