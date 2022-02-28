@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -44,6 +45,16 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
+/* PULSEAUDIO */
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+
+/* BRIGHTNESS CONTROL */
+static const char *upbright[] = { "/usr/bin/brightnessctl", "s", "+10%", NULL };
+static const char *downbright[] = { "/usr/bin/brightnessctl", "s", "10%-", NULL };
+
+
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
@@ -85,6 +96,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+    /* PULSEAUDIO */
+    { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+    /* BRIGHTNESS*/
+    { 0,                       XF86XK_MonBrightnessUp , spawn, {.v = upbright  } },
+    { 0,                       XF86XK_MonBrightnessDown , spawn, {.v = downbright  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
