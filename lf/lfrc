@@ -1,7 +1,7 @@
 # Basic Settings
 set previewer ~/.config/lf/previewer.sh
 set cleaner ~/.config/lf/clear_img.sh
-set hidden true
+#set hidden true
 set ignorecase true
 set icons true
 set drawbox true
@@ -22,7 +22,7 @@ cmd mkfile ${{
 #cmd setwallpaper %cp "$f" ~/.config/wall.jpg && xwallpaper --zoom "$f"
 
 cmd editfile ${{
-    /bin/nvim $f
+    /bin/nvim "$f" 
 }}
 
 # Archive bindings
@@ -34,6 +34,10 @@ cmd unarchive ${{
       *.tar) tar -xvf "$f" ;;
       *) echo "Unsupported format" ;;
   esac
+}}
+
+cmd terminal ${{
+    alacritty&
 }}
 
 ## Execute exe
@@ -69,6 +73,7 @@ map md mkdir
 map bg setwallpaper
 map C clear
 map e editfile
+map T terminal
 
 # Movement
 #map gd cd ~/documents
