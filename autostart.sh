@@ -6,6 +6,7 @@
 /home/parapsychic/.bin/bat_notfication &
 #dwmblocks &
 nitrogen --restore &
+discord --enable-gpu-rasterization &
 ### Uncomment only ONE of the following ###
 # uncomment this line to restore last saved wallpaper...
 #xargs xwallpaper --stretch < ~/.xwallpaper &
@@ -21,7 +22,27 @@ dt(){
 bat(){
     batstat=$(cat /sys/class/power_supply/BAT0/capacity) 
     batcharge=$(cat /sys/class/power_supply/BAT0/status) 
-    echo -e "$batstat% $batcharge"
+    if [ $batcharge = "Charging" ] || [ $batcharge = "Unknown" ] 
+    then
+        baticon=
+    elif [[ $batstat -ge 90 ]]
+    then
+        baticon=
+    elif [[ $batstat -ge 50 ]]
+    then
+            baticon=
+    elif [[ $batstat -ge 30 ]]
+    then
+        baticon=
+    else
+        baticon=
+    fi
+
+    if [ $batcharge = "Unknown" ]
+    then
+        batcharge="Limiting"
+    fi
+    echo -e "$baticon $batstat% $batcharge"
 }
 
 rootLeft(){
@@ -29,9 +50,18 @@ rootLeft(){
     echo $rem
 }
 
+vol(){
+    vollvl=$(pactl list sinks | grep -o -P '.{0,5}%' | head -n1 | grep -Eo '[0-9]{1,4}')
+    if [[ $vollvl -ge 150 ]]
+    then
+        pactl set-sink-volume 0 150%
+    fi
+    echo $vollvl
+}
+
 while true
 do
-    xsetroot -name " $(bat) | $(dt) | / $(rootLeft) | parapsychic "
-    sleep 10s #update time every minute
+    xsetroot -name "$(bat) | 墳 $(vol) | $(dt) | / $(rootLeft) | parapsychic "
+    sleep 1s #update time every minute
 done &
 
