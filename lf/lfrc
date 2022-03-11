@@ -77,9 +77,10 @@ map T terminal
 
 # Movement
 #map gd cd ~/documents
-#map gD cd ~/downloads
+map gD cd ~/Downloads
 #map gp cd ~/pictures
-#map gc cd ~/.config
+map gc cd ~/.config
+map gw cd /WindowsShared
 #map gr cd ~/repos
 #map gv cd ~/videos/recordings
 #map gs cd ~/.local/bin
