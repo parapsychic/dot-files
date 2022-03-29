@@ -1,6 +1,6 @@
 #! /bin/bash
 #lxsession &
-#picom &
+picom -cCGfF &
 #dunst &
 #why here? Because it's easier to edit it here
 /home/parapsychic/.bin/bat_notfication &
