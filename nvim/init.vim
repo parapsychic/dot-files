@@ -52,6 +52,9 @@ set number
 set cursorline
 set cursorcolumn
 
+" enable mouse support
+set mouse=a
+
 " Set shift width to 4 spaces.
 set shiftwidth=4
 
@@ -121,8 +124,10 @@ nnoremap o o<esc>
 nnoremap O O<esc>
 
 " Center the cursor vertically when moving to the next word during a search.
-nnoremap n nzz
-nnoremap N Nzz
+" zz -> center cursor on screen zv -> open folds
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 
 " Yank from cursor to the end of line.
 nnoremap Y y$
@@ -155,8 +160,34 @@ noremap ff :FZF<CR>
 
 " Open a new blank tab
 noremap <leader>t :tabnew<CR>
+noremap gz :tabclose<CR>
+
+
+"BETTER UNDO EXPERIENCE
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap [ [<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+
+"Move lines up and down using leader j,k or also works in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+
+
+"Stop highlighting
+nnoremap <F4> :nohl<CR>
+
+" exit terminal mode
+tnoremap <Esc> <C-\><C-n>
 
 "}}}
+
 
 
 " VIMSCRIPT -------------------------------------------------------------- {{{
@@ -167,6 +198,13 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
+" Highlight when yanking
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=700})
+augroup END
+
 
 " More Vimscripts code goes here.
 
