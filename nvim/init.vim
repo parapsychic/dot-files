@@ -9,6 +9,7 @@
 "               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
 
+set nocompatible
 " PLUG PLUGIN MANAGER
 "
 call plug#begin('~/.vim/plugged')
@@ -26,6 +27,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
     Plug 'jiangmiao/auto-pairs'
     Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+    Plug 'sheerun/vim-polyglot'
     Plug 'kyazdani42/nvim-web-devicons' 
     Plug 'akinsho/bufferline.nvim'
 call plug#end()
@@ -34,7 +36,7 @@ call plug#end()
 
 
 "colorscheme codedark
-colorscheme gruvbox
+colorscheme sonokai
 set encoding=utf8
 set guifont=JetBrains\ Mono\ Nerd\ Font\ 11
 let g:airline_powerline_fonts = 1
@@ -158,9 +160,9 @@ noremap <c-right> <c-w><
 
 noremap ff :FZF<CR> 
 
-" Open a new blank tab
-noremap <leader>t :tabnew<CR>
+noremap <leader>t :tabnew `pwd`<CR>
 noremap gz :tabclose<CR>
+noremap gq :bw<CR>
 
 
 "BETTER UNDO EXPERIENCE
@@ -174,8 +176,6 @@ inoremap ? ?<c-g>u
 "Move lines up and down using leader j,k or also works in visual mode
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-j> <esc>:m .+1<CR>==
-inoremap <C-k> <esc>:m .-2<CR>==
 nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 
