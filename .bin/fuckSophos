@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+wget -q --tries=10 --timeout=10  http://192.168.2.100:8090 --output-document=/dev/null
+
+if [[ $? -eq 0 ]]
+then
+    curl -s -X POST -d "mode=191&username=cs&password=cs&a=$(($(date +%s%N)/1000000))&producttype=0" "http://192.168.2.100:8090/login.xml" 
+    echo "Fuck Sophos. We're Online!"
+else
+    echo "No Sophos. Good!"
+fi
+

@@ -42,8 +42,8 @@ window:
 # Blank space added around the window in pixels. This padding is scaled
 # by DPI and the specified value is always added at both opposing sides.
   padding:
-   x: 10
-   y: 10
+   x: 5
+   y: 5 
 
 # Spread additional padding evenly around the terminal content.
 #dynamic_padding: true
@@ -713,7 +713,7 @@ theme: Gruvbox-Dark
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
 #- { key: Paste,                                       action: Paste          }
 #- { key: Copy,                                        action: Copy           }
 #- { key: L,         mods: Control,                    action: ClearLogNotice }
@@ -722,7 +722,7 @@ theme: Gruvbox-Dark
 #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
 #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
 #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
-#- { key: T,         mods: Shift,  mode: ~Alt,        action: CreateNewWindow }
+- { key: T,         mods: Shift|Control,  mode: ~Alt,        action: CreateNewWindow }
 
 # Vi Mode
 #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }

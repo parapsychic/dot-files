@@ -1,0 +1,10 @@
+#!/bin/sh
+xdotool key "Super_L+m"
+tmux new-session -d -s 'vim' 
+tmux split-window -v 
+tmux send-keys $2 C-m
+tmux split-window -h
+tmux set -g status off
+tmux select-pane -t 0
+tmux send-keys "vim $1" C-m
+tmux -2 attach-session -d

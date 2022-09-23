@@ -5,8 +5,11 @@ picom -cCGfF &
 #why here? Because it's easier to edit it here
 /home/parapsychic/.bin/bat_notfication &
 #dwmblocks &
+redshift -l 10:74 &
 nitrogen --restore &
 discord --enable-gpu-rasterization &
+#dwmblocks &
+conky &
 ### Uncomment only ONE of the following ###
 # uncomment this line to restore last saved wallpaper...
 #xargs xwallpaper --stretch < ~/.xwallpaper &
@@ -52,16 +55,34 @@ rootLeft(){
 
 vol(){
     vollvl=$(pactl list sinks | grep -o -P '.{0,5}%' | head -n1 | grep -Eo '[0-9]{1,4}')
+    volmute=$(pactl get-sink-mute 0 | grep -o yes)
+    volicon="墳"
+    if [ $volmute = "yes" ]
+    then
+        volicon="婢"
+        vollvl="MUTED"
+    fi
     if [[ $vollvl -ge 150 ]]
     then
         pactl set-sink-volume 0 150%
     fi
-    echo $vollvl
+    echo $volicon $vollvl
 }
+
+network(){
+    ssid=$(iwgetid -r)
+    if [ '$ssid' != "" ]
+    then
+        echo 直 $ssid
+    else
+        echo "睊 Not Connected"
+    fi
+}
+
 
 while true
 do
-    xsetroot -name "$(bat) | 墳 $(vol) | $(dt) | / $(rootLeft) | parapsychic "
-    sleep 1s #update time every minute
+    xsetroot -name "$(bat) | $(network) |  $(vol) |   $(dt) | / $(rootLeft) | parapsychic "
+    sleep 1s #update time every second
 done &
 

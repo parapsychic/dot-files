@@ -15,7 +15,6 @@
 alias ls='ls --color=auto'
 alias la='ls -al --color=auto'
 alias neofetch='neofetch | lolcat'
-alias vi='vim'
 alias vim='nvim'
 alias py='python3'
 alias cd..='cd ..'
@@ -23,13 +22,24 @@ alias cdb='cd .. && cd'
 alias cda='cd && cd'
 alias yt='ytfzf -t'
 alias lf='lf-uberzug'
+alias cykablyat='sudo'
+alias :q='exit'
+alias myr='sudo $(history -p !!)'
+alias flameshot='flameshot gui'
+alias warp-connect='warp-cli connect'
+alias warp-disconnect='warp-cli disconnect'
+alias warp-status='curl https://www.cloudflare.com/cdn-cgi/trace/ | grep warp'
 
 
 export PATH="$PATH:/home/parapsychic/.bin"
-export PATH="$PATH:/home/parapsychic/Development/flutter/bin"
 export PATH="$PATH:/home/parapsychic/.local/share/gem/ruby/3.0.0/bin"
+export PATH="$PATH:/home/parapsychic/AndroidDevelopment/flutter/bin"
+export PATH="$PATH:/home/parapsychic/AndroidDevelopment/AndroidStudio/bin"
+export PATH="$PATH:/home/parapsychic/.pub-cache/bin"
+export PATH="$PATH:/home/parapsychic/.local/bin"
 export CHROME_EXECUTABLE=/bin/chromium 
 export EDITOR=/bin/nvim
+
 
 #PS1='\[\e[1;36m\]\u\[\e[0m\]@\[\e[1;32m\]\h \[\e[1;34m\]\w \[\e[0m\]\$ '
 #PS1=' \[\e[1;34m\]\w \[\e[30m\]\$ \[\e[0m\]'
@@ -201,3 +211,4 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+

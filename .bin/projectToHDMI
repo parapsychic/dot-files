@@ -1,0 +1,50 @@
+#!/bin/bash
+
+gpuStatus=$(optimus-manager --status | grep "Current GPU mode"| sed 's/^.*: //' | head -n 1)
+
+if [ $gpuStatus == "integrated" ]
+then
+    echo "Projection not possible" 
+    echo "GPU is $gpuStatus"
+    echo "Change to nvidia using optimus-manager --switch nvidia"
+    echo "This will log you out. Please save and close any windows."
+    echo "Would you like to switch to nvidia? (y/N)"
+    
+    read n
+    n="${n:=N}"
+    if [ $n == "y" ]
+    then
+        echo "Switching to NVIDIA"
+        echo "Re-run the script after logging in"
+        optimus-manager --switch nvidia
+    fi
+    exit
+fi
+
+#check if hdmi is active
+hdmi_active=$(xrandr |grep ' connected' |grep 'HDMI' |awk '{print $1}')
+[[  -z "$hdmi_active" ]] && echo "HDMI NOT CONNECTED" && exit
+
+#allow mode selection
+echo "Mode: (Default: 1)"
+echo "1. Mirror"
+echo "2. Duplicate (right)"
+read mode
+mode="${mode:=1}"
+
+#change between resolutions
+echo "Resolution: (1360x768)"
+read res
+res="${res:=1360x768}"
+
+case $mode in
+    1) echo "Projecting in Mirror mode at $res" && xrandr --output HDMI-0 --auto --same-as eDP-1-1 --mode $res ;;
+    2) echo "Projecting in Mirror mode at $res" && xrandr --output HDMI-0 --auto --right-of eDP-1-1 --mode $res ;;
+    *) echo "This option is not available" ;;
+esac
+
+echo "Projecting successful"
+echo "NVIDIA is being used. Battery might suffer"
+echo "Make sure to switch it to integrated"
+exit
+

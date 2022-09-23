@@ -1,0 +1,57 @@
+#!/bin/bash
+echo "SENDING MAIL"
+
+# User input
+sender="parapsychicpotato@gmail.com"
+receiver=$1
+gapp=$(cat /home/parapsychic/password)
+
+sub=$2
+body=$3
+
+# check for provided attachment file as a positional parameter
+# -z indicating an empty positional parameter
+# attachment doesn't exist condition
+
+
+
+
+# curl command for accessing the smtp server
+if [ $# -lt 3 ]
+then
+    echo "Add receiver subject body in that order as positional arguments"
+    echo "eg. mailer abc@abc.com \"About last meeting\" \"Good Meeting\""
+    exit
+fi
+
+if [ -z $4 ]
+then
+    curl -s --url 'smtps://smtp.gmail.com:465' --ssl-reqd \
+    --mail-from $sender \
+    --mail-rcpt $receiver\
+    --user $sender:$gapp \
+     -T <(echo -e "From: ${sender}
+To: ${receiver}
+Subject:${sub}
+
+ ${body} \n\nThis mail was sent by ParaPsychic's Wonderland Machine 🐧🚀")
+
+    exit
+else
+    file=$4
+    MIMEType=`file --mime-type "$file" | sed 's/.*: //'`
+    body="$body
+    This mail was sent by ParaPsychic's Wonderland Machine 🐧🚀" 
+
+    curl -s --url 'smtps://smtp.gmail.com:465' --ssl-reqd \
+    --mail-from $sender \
+    --mail-rcpt $receiver\
+    --user $sender:$gapp \
+     -H "Subject: $sub" -H "From: $sender" -H "To: $receiver" -F \
+    '=(;type=multipart/mixed' -F "=$body" -F \
+      "file=@$file;type=$MIMEType;encoder=base64" -F '=)'
+
+    exit
+fi
+
+
