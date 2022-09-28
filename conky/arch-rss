@@ -1,5 +1,5 @@
 conky.config = {
-	alignment = 'middle_middle',
+	alignment = 'bottom_right',
 	xinerama_head = 1,
 	background = true,
 	cpu_avg_samples = 2,
@@ -14,9 +14,9 @@ conky.config = {
 	draw_outline = false,
 	draw_shades = false,
 	use_xft = true,
-	font = 'Hack Nerd Font:size=11',
-	gap_x = 0,
-	gap_y = 0,
+	font = 'JetBrains Mono Nerd Font:size=11',
+	gap_x = 120,
+	gap_y = 50,
 	no_buffers = true,
 --	minimum_width = 160, minimum_height = 5,
 --	maximum_width = 400,
@@ -30,7 +30,7 @@ conky.config = {
 	own_window_class = 'Conky',
 	own_window_type = 'override', --For tilling window managers
 --	own_window_type = 'desktop',
-	own_window_transparent = false,
+	own_window_transparent = true,
 	own_window_argb_visual = true,
 	own_window_argb_value = 200,
 	border_inner_margin = 16,
@@ -57,7 +57,7 @@ conky.config = {
 
 	color1='#98971a', --dark green
 	color2='#b8bb26', --light green
-	color3='#fe8019', --orange
+	color3='#eadbb2', --orange
 	color4='#fabd2f', --yellow
 	color5='#458588', --dark blue
 	color6='#83a598', --light blue
@@ -67,19 +67,8 @@ conky.config = {
 
 }
 conky.text = [[
-$alignc News 
-$hr
-• ${color #1E8EF6}Arch:
-${color #737373}${rss https://archlinux.org/feeds/news 300 item_titles 4}${color}
-
-• ${color #1E8EF6}Kerala:
-${color #737373}${rss https://www.onmanorama.com/news/kerala.feeds.onmrss.xml 300 item_titles 4}${color}
-
-• ${color #1E8EF6}India:
-${color #737373}${rss https://www.onmanorama.com/news/india.feeds.onmrss.xml 300 item_titles 4}${color}
-
-• ${color #1E8EF6}World:
-${color #737373}${rss https://www.onmanorama.com/news/world.feeds.onmrss.xml 300 item_titles 4}${color}
-
+#$alignc News 
+#$hr
+${color3}${rss https://archlinux.org/feeds/news 300 item_titles 1}${color}
 ]]
 

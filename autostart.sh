@@ -1,7 +1,7 @@
 #! /bin/bash
 #lxsession &
 picom -cCGfF &
-#dunst &
+dunst &
 #why here? Because it's easier to edit it here
 /home/parapsychic/.bin/bat_notfication &
 #dwmblocks &
@@ -9,7 +9,11 @@ redshift -l 10:74 &
 nitrogen --restore &
 discord --enable-gpu-rasterization &
 #dwmblocks &
-conky &
+conky -c ~/.config/conky/news
+conky -c ~/.config/conky/system
+conky -c ~/.config/conky/todo
+conky -c ~/.config/conky/arch-rss
+
 ### Uncomment only ONE of the following ###
 # uncomment this line to restore last saved wallpaper...
 #xargs xwallpaper --stretch < ~/.xwallpaper &
