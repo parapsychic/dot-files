@@ -12,6 +12,8 @@ Minimalistic retro themed rice.
 
 <img src="nvim-screenshot.png" target="_blank" rel="noopener">
 
+<img src="lf-screenshot.png" target="_blank" rel="noopener">
+
 + **Wallpaper**: [Tundra Gruvbox Linux](https://imgur.com/qTMjZoE) : Modified the gruvbox linux wallpaper to match Tundra colorscheme
 + **WM**: DWM
 + **Terminal**: ST
