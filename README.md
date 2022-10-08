@@ -1,6 +1,15 @@
 # Wonderland Machine Dots
 
+<a href="https://www.reddit.com/r/unixporn/comments/xqit1s/dwm_kids_dont_read_news_these_days_they_said/"> 
+  <img src="https://logodownload.org/wp-content/uploads/2018/02/reddit-logo-16.png" height=30px align=right>
+</a>
+
+
 Minimalistic retro themed rice. 
+
+
+<img src="screenshot.png" target="_blank" rel="noopener">
+
 
 + **Wallpaper**: [Tundra Gruvbox Linux](https://imgur.com/qTMjZoE) : Modified the gruvbox linux wallpaper to match Tundra colorscheme
 + **WM**: DWM
@@ -21,6 +30,8 @@ nvim.bak contains the nvim configs before I switched to Lua. It uses [coc](https
 I use several dumb utility scripts. It's all in the .bin folder. i3, polybar configs are from previous setup. Not gonna delete those.
 
 Don't look up my bashrc.
+
+
 
 
 ## Installation
