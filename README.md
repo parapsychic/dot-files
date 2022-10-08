@@ -16,6 +16,7 @@ Minimalistic retro themed rice.
 + **WM**: DWM
 + **Terminal**: ST
 + **Colorscheme**: Didn't really follow it through and through (as you can see), but I did use the [Tundra](https://github.com/sam4llis/nvim-tundra) colorscheme for Neovim by [u/Physical-Hat-8416](https://www.reddit.com/u/Physical-Hat-8416/) -> [Original post](https://www.reddit.com/r/neovim/comments/x9yws0/nvimtundra_a_punchy_dark_colorscheme_for_neovim/)
++ **File Manager**: lf with uberzug
 + RSS from news websites (Manorama, Indian Express, BBC World) and archlinux.org (bottom right)
 
 Btw, if the colors look saturated to you, please understand that I own a cheap TUF with the least color accurate screen ever.
