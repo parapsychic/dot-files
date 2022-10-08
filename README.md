@@ -47,8 +47,4 @@ git clone https://github.com/parapsychic/dot-files/
 #copying nvim
 cp dot-files/nvim ~/.config/ #replace this with your config location, usually $XDG_HOME helps
 ```
-Nvim requires additional steps. 
-
-
-
-
+Nvim requires additional steps, like installing LSPs and running Packer to install plugins.
