@@ -7,13 +7,16 @@ static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono ExtraBold Nerd Font:size=10" };
+static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=ExtraBold:size=10" };
 //static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "JetBrains Mono ExtraBold Nerd Font:size=10"; 
-static const char col_gray1[]       = "#222222";
+static const char dmenufont[]       = "JetBrains Mono Nerd Font:style=ExtraBold:size=10"; 
+static const char col_gray1[]       = "#0E1420";
+//static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
+//static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray3[]       = "#FFFFFF";
+static const char col_gray4[]       = "#FBC19D";
+//static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -35,6 +38,7 @@ static const Rule rules[] = {
 	{ "Firefox",     NULL,       NULL,              1 << 2,       0,          0,                    -1 },
    	{ "discord",     NULL,       NULL,              1 << 8,       0,          0,                    -1 },
    	{ "Alacritty",   NULL,       NULL,              0,            0,          1,                    -1 },
+   	{ "st-256color",   NULL,       NULL,              0,            0,          1,                    -1 },
 };
 
 /* layout(s) */
@@ -74,7 +78,8 @@ static const char *downbright[] = { "/usr/bin/brightnessctl", "s", "10%-", NULL 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "st", "-e", "tmux", NULL};
+//static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[]  = { "rofi", "-show", "emoji", "-theme", "/home/parapsychic/.config/rofi/config.rasi", NULL };
 
 
