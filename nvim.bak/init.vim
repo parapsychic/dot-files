@@ -30,6 +30,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'sheerun/vim-polyglot'
     Plug 'kyazdani42/nvim-web-devicons' 
     Plug 'akinsho/bufferline.nvim'
+    Plug 'alvan/vim-closetag'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,6 +163,7 @@ noremap ff :FZF<CR>
 
 noremap <leader>t :tabnew `pwd`<CR>
 noremap gz :tabclose<CR>
+noremap tt :tabNext<CR>
 noremap gq :bw<CR>
 
 
@@ -186,6 +188,8 @@ nnoremap <F4> :nohl<CR>
 " exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+:command W Format 
+"
 "}}}
 
 
@@ -256,7 +260,7 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 
 " only enable Emmet for certain file types
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,jsx,js EmmetInstall
 
 " redefine the trigger key (you still need to enter the trailing ,)
 let g:user_emmet_leader_key='<C-Z>'
@@ -432,4 +436,55 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 set termguicolors
 lua require('bufferline').setup {}
+"}}}
+"
+"{{{ HTML AUTO CLOSE
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a valid region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
+" integer value [0|1]
+" Enables closing tags for React fragments -> <></> for all supported file types
+"
+let g:closetag_enable_react_fragment = 1
+
 "}}}

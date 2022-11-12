@@ -8,6 +8,8 @@ vim.g.mapleader = " "
 map("n", "<leader>tr", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>zen", ":Twilight<CR>", opts)
 -- Stuff I personally like
+-- format on save
+map("n", "<leader>f", ":lua vim.lsp.buf.format({async=true})<CR>", opts)
 -- newlines
 map("n", "o", "o<esc>", opts)
 map("n", "O", "O<esc>", opts)

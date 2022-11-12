@@ -1,5 +1,13 @@
 -- luasnip setup
 local luasnip = require("luasnip")
+luasnip.config.set_config({
+	history = true,
+	enable_autosnippets = true,
+})
+
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip").filetype_extend("javascript", { "javascriptreact" })
+
 -- lspkind shows icons
 local lspkind = require("lspkind")
 

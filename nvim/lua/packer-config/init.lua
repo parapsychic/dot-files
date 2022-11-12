@@ -20,6 +20,9 @@ return require("packer").startup(function(use)
 		"williamboman/mason-lspconfig.nvim", -- Lspconfig x Mason
 		"neovim/nvim-lspconfig", -- Lsp
 	})
+	--Emmett
+	use("mattn/emmet-vim")
+
 	use("jose-elias-alvarez/null-ls.nvim") -- Formatting
 
 	use("folke/lsp-colors.nvim") -- Diagnostic colors
@@ -33,6 +36,7 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-path") -- Path completion for cmp
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
+	use("rafamadriz/friendly-snippets")
 	use("onsails/lspkind.nvim") -- Adds icons to autocomplete
 
 	-- Discord RPC
@@ -40,6 +44,8 @@ return require("packer").startup(function(use)
 
 	-- Auto pairs
 	use("windwp/nvim-autopairs")
+	use("windwp/nvim-ts-autotag")
+
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",

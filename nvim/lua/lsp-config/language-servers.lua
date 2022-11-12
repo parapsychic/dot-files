@@ -46,19 +46,19 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-	vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+	--	vim.keymap.set("n", "<space>f", vim.lsp.buf.format(), bufopts)
 end
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
 }
 
-local servers = { "clangd", "pyright", "sumneko_lua", "dartls" }
+local servers = { "clangd", "pyright", "dartls", "cssmodules_ls", "html", "tsserver" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
@@ -67,6 +67,29 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+-- configuring lua separately
+
+lspconfig.sumneko_lua.setup({
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
+
+lspconfig.emmet_ls.setup({
+	capabilities = capabilities,
+	filetypes = { "html", "typescriptreact", "javascript", "javascriptreact", "css", "sass", "scss", "less" },
+	init_options = {
+		html = {
+			options = {
+				["bem.enabled"] = true,
+			},
+		},
+	},
+})
 -- require('lspconfig')['pyright'].setup{
 --     on_attach = on_attach,
 --     flags = lsp_flags,

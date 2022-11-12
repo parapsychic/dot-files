@@ -4,7 +4,6 @@ local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 
 local sources = {
-	formatting.eslint,
 	formatting.autopep8,
 	formatting.dart_format,
 	formatting.stylua,
@@ -20,9 +19,10 @@ null_ls.setup({
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = augroup,
 				buffer = bufnr,
+
 				callback = function()
 					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-					vim.lsp.buf.formatting_seq_sync()
+					vim.lsp.buf.format({ timeout_ms = 2000 })
 				end,
 			})
 		end
