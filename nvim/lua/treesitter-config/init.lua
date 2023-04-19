@@ -1,8 +1,21 @@
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "python", "typescript" },
+  ensure_installed = {
+    "c",
+    "lua",
+    "python",
+    "typescript",
+    "tsx",
+    "toml",
+    "php",
+    "json",
+    "yaml",
+    "css",
+    "html",
+    "lua"
+  },
 
- -- Automatically close HTML tags
+  -- Automatically close HTML tags
   autotag = {
     enable = true,
   },
@@ -37,9 +50,9 @@ require'nvim-treesitter.configs'.setup {
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
-    
 
-   refactor = {
+
+  refactor = {
     highlight_definitions = {
       enable = true,
       -- Set to false if you have an `updatetime` of ~100.
@@ -64,4 +77,3 @@ require'nvim-treesitter.configs'.setup {
 
   },
 }
-

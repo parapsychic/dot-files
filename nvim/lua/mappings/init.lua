@@ -3,7 +3,6 @@ local opts = { noremap = true, silent = true }
 
 --vim.g.mapleader = "\\"
 vim.g.mapleader = " "
-
 -- Open Nvim-Tree
 map("n", "<leader>tr", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>zen", ":Twilight<CR>", opts)
@@ -48,8 +47,6 @@ map("n", "<C-right>", "<C-w><", opts)
 --pseudo escape mode
 map("i", "jk", "<esc>", opts)
 
--- LSP settings
-map("n", "ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
 
 -- barbar tabs mapping
 -- Move to previous/next
