@@ -1,0 +1,43 @@
+(defvar isplaying false) 
+(defvar ispaused false)
+
+(defwidget wallpaper_switcher []
+  (expander 
+  :class 'expander'
+ (box :orientation "vertical"
+       :halign "center"
+     (button :class "wallpaper-btn"
+     :onclick 'wallpaper-switcher &'
+     "🔥")
+     (button :class "wallpaper-btn"
+     :onclick "wallpaper-switcher newjeans &"
+     "👖")
+     (button :class "wallpaper-btn"
+     :onclick 'wallpaper-switcher blackpink &'
+     "🖤")
+     (button :class "wallpaper-btn"
+     :onclick "wallpaper-switcher -m"
+     "🔈")
+     (button :class "wallpaper-btn"
+     :onclick "wallpaper-switcher -p"
+     {ispaused ? "▶️" : "⏸️"})
+     (button :class "wallpaper-btn"
+     :onclick "wallpaper-switcher -k"
+     "✋")
+      ) 
+  )
+ )
+
+
+
+(defwindow wallpaper_switch
+           :monitor 0
+            :geometry (geometry :x "30" 
+            						:y "30" 
+                        :anchor "bottom right")
+              :exclusive true
+              :stacking 'bottom'
+            	:focusable false
+            	:hexpand "false"
+            	:vexpand "false"
+  (wallpaper_switcher :class "wallpaper-switcher"))

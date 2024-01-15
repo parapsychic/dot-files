@@ -1,0 +1,18 @@
+window {
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
+.wallpaper-btn{
+  border-radius: 50%;
+  border-color: rgba(0,0,0,0);
+  border: 0px;
+  background: rgba(0,0,0,0);
+  //background: linear-gradient(270deg, #6cd4b9, #ecaeae);
+  //background-size: 400% 400%;
+}
+
+@keyframes backgroundcolor {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

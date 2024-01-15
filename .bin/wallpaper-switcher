@@ -1,0 +1,83 @@
+#!/bin/bash
+SOCKET='/tmp/mpv-socket'
+
+function main(){
+  check $@
+}
+
+function notify(){
+    notify-send -u low -t 2000 "$@"
+}
+
+function check(){
+  while getopts ":pmk" opt; do
+    case $opt in
+      p) cycle_pause
+         exit
+        ;;
+      m) mute
+         exit
+        ;;
+      k) kill_video
+         exit
+        ;;
+      \?) echo "Unrecognized option $opt"
+        ;;
+    esac
+  done
+  
+  play_video $@
+}
+
+function cycle_pause(){
+  if [[ $(eww get ispaused) == "false" ]]; then
+    eww update ispaused=true
+    notify "Paused..."
+  else
+    eww update ispaused=false
+    notify "Playing..."
+  fi
+  echo 'cycle pause' | socat - $SOCKET
+}
+
+function mute(){
+  notify "Muted..."
+  echo 'cycle mute' | socat - /tmp/mpv-socket
+}
+
+function kill_video(){
+  killall mpvpaper
+  eww update isplaying=false 
+  eww update ispaused=false
+  notify "Stopped Playing"
+}
+
+function play_video(){
+  if [[ $(eww get isplaying) == "true" ]]; then
+    notify "Already playing a video, kill it to start a new video"
+    exit
+  fi
+
+  eww update isplaying=true
+  eww update ispaused=false
+
+  local URL
+  if [[ $1 == "blackpink" ]]; then
+   mpvpaper -o "--really-quiet --no-terminal input-ipc-server=/tmp/mpv-socket"  eDP-1 ~/Videos/blackpink-splash.mp4 > /dev/null
+   notify "BLACKPINK IN YOUR AREA"
+   URL="https://www.youtube.com/playlist?list=PLNF8K9Ddz0kKfujG6blfAxngYh_C66C_q"
+  elif [[ $1 == "newjeans" ]]; then 
+    URL="https://www.youtube.com/playlist?list=PLzCaGtqoOhWcrvOdPdEiTWsnFWZ_pKLwp"
+  else
+    URL="https://youtu.be/FslCeCp1GqM?si=AIgrJrXVZMPywCae"
+  fi
+  
+  notify "Starting Playback. Fetching Video from Youtube."
+  mpvpaper -o "--really-quiet --no-terminal --loop-playlist shuffle input-ipc-server=/tmp/mpv-socket"  eDP-1 $URL > /dev/null
+
+  eww update isplaying=false
+  eww update ispaused=true
+}
+
+
+main $@
