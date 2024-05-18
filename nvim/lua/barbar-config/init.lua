@@ -29,11 +29,11 @@ require("bufferline").setup({
       enabled = true,
       custom_colors = false,
     },
-    button = "",
+    button = "󱎘",
     modified = { button = "●" },
     separator = { left = "▎ " },
     inactive = { separator = { left = "▎" } },
-    pinned = { button = "車", },
+    pinned = { button = "", },
   },
 
   -- If true, new buffers will be inserted at the start/end of the list.

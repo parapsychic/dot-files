@@ -22,6 +22,9 @@ map("n", "<C-l>", "<C-w>l", opts)
 --paste without removing from register
 map("x", "<leader>p", '"_dP', opts)
 
+--Guilty Undo
+map("n", "<C-z>", "U", opts)
+
 -- Press \\ to jump back to the last cursor position.
 map("n", "<leader>\\", "``", opts)
 
@@ -93,3 +96,6 @@ map("n", "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
 -- Telescope Mappings
 map("n", "<leader>tel", ":Telescope find_files<CR>", opts)
 map("n", "<leader>tg", ":Telescope live_grep<CR>", opts)
+
+-- Trouble 
+map("n", "<leader>tt", ":TroubleToggle<CR>", opts)
