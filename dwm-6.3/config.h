@@ -10,7 +10,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono Nerd Font:style=ExtraBold:size=10" };
 //static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "JetBrains Mono Nerd Font:style=ExtraBold:size=10"; 
-static const char col_gray1[]       = "#0E1420";
+static const char col_gray1[]       = "#000000";
 //static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 //static const char col_gray3[]       = "#bbbbbb";
@@ -25,7 +25,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "ﭮ" };
+static const char *tags[] = { "1", "2", "󰈹", "4", "5", "6", "7", "8", "󰙯" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -33,12 +33,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class         instance    title              tags mask     isfloating  CenterThisWindow?     monitor */
-	{ "Gimp",        NULL,       NULL,              0,            1,          1,		            -1 },
+	{ "Gimp",        NULL,       NULL,              0,            1,          1,		                -1 },
 	{ "Steam",       NULL,       "Friends List",    0,            1,          0,                    -1 },
 	{ "Firefox",     NULL,       NULL,              1 << 2,       0,          0,                    -1 },
-   	{ "discord",     NULL,       NULL,              1 << 8,       0,          0,                    -1 },
-   	{ "Alacritty",   NULL,       NULL,              0,            0,          1,                    -1 },
-   	{ "st-256color",   NULL,       NULL,              0,            0,          1,                    -1 },
+	{ "LibreWolf",   NULL,       NULL,              1 << 2,       0,          0,                    -1 },
+	{ "discord",     NULL,       NULL,              1 << 8,       0,          0,                    -1 },
+	{ "Alacritty",   NULL,       NULL,              0,            0,          0,                    -1 },
+	{ "st-256color", NULL,       NULL,              0,            0,          0,                    -1 },
 };
 
 /* layout(s) */
@@ -80,7 +81,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 //static const char *termcmd[]  = { "st", "-e", "tmux", NULL};
 //static const char *termcmd[]  = { "alacritty", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *flameshot[]  = { "screenshot", NULL };
 static const char *rofi[]  = { "rofi", "-show", "emoji", "-theme", "/home/parapsychic/.config/rofi/config.rasi", NULL };
 
 
@@ -88,6 +90,7 @@ static Key keys[] = {
 	/* modifier                     key            function        argument */
 	{ MODKEY,                       XK_p,          spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return,     spawn,          {.v = termcmd } },
+	{ 0,                            XK_Print,      spawn,          {.v = flameshot } },
 	{ MODKEY,                       XK_semicolon,  spawn,          {.v = rofi } },
 	{ MODKEY,                       XK_b,          togglebar,      {0} },
 	{ MODKEY,                       XK_j,          focusstack,     {.i = +1 } },
